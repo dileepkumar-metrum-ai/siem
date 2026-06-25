@@ -1,0 +1,10 @@
+25/06/2026 11:41:28 INFO: Verbose logging redirected to /home/ubuntu/siem/wazuh-certificates-tool.log
+25/06/2026 11:41:28 INFO: Generating the root certificate.
+25/06/2026 11:41:29 INFO: Generating Admin certificates.
+25/06/2026 11:41:29 INFO: Admin certificates created.
+25/06/2026 11:41:29 INFO: Generating Wazuh indexer certificates.
+25/06/2026 11:41:30 INFO: Wazuh indexer certificates created.
+25/06/2026 11:41:30 INFO: Generating Filebeat certificates.
+25/06/2026 11:41:30 INFO: Wazuh Filebeat certificates created.
+25/06/2026 11:41:30 INFO: Generating Wazuh dashboard certificates.
+25/06/2026 11:41:31 INFO: Wazuh dashboard certificates created.

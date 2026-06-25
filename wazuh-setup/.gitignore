@@ -1,0 +1,6 @@
+wazuh-certificates/
+wazuh-certificates-tool.log
+wazuh-certs-tool.sh
+config.yml
+*.png
+*.log
