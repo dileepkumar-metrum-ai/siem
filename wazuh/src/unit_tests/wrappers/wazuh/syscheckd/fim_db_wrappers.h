@@ -1,0 +1,106 @@
+/* Copyright (C) 2015, Wazuh Inc.
+ * All rights reserved.
+ *
+ * This program is free software; you can redistribute it
+ * and/or modify it under the terms of the GNU General Public
+ * License (version 2) as published by the FSF - Free Software
+ * Foundation
+ */
+
+#ifndef FIM_DB_WRAPPERS_H
+#define FIM_DB_WRAPPERS_H
+
+#include "../../../../syscheckd/src/db/include/fimCommonDefs.h"
+#include "syscheck.h"
+
+int __wrap_fim_db_get_checksum_range(fdb_t* fim_sql,
+                                     fim_type type,
+                                     const char* start,
+                                     const char* top,
+                                     int n,
+                                     EVP_MD_CTX* ctx_left,
+                                     EVP_MD_CTX* ctx_right,
+                                     char** str_pathlh,
+                                     char** str_pathuh);
+
+int __wrap_fim_db_get_count_file_entry();
+
+int __wrap_fim_db_get_count_registry_data();
+
+int __wrap_fim_db_get_count_registry_key();
+
+int __wrap_fim_db_get_count_range(fdb_t* fim_sql, fim_type type, char* start, char* top, int* count);
+
+FIMDBErrorCode __wrap_fim_db_get_path(const char* file_path, callback_context_t callback);
+void expect_fim_db_get_path(const char* path, int ret_val);
+
+FIMDBErrorCode __wrap_fim_db_init(int storage, logging_callback_t log_callback, int file_limit, int value_limit);
+
+void expect_wrapper_fim_db_init(int storage, int file_limit, int value_limit);
+
+FIMDBErrorCode __wrap_fim_db_remove_path(const char* path);
+
+int __wrap_fim_db_read_line_from_file(fim_tmp_file* file, int storage, int it, char** buffer);
+
+void __wrap_fim_db_clean_file(fim_tmp_file** file, int storage);
+
+/**
+ * @brief This function loads the expect and will_return calls for the wrapper of fim_db_get_count_file_entry
+ */
+void expect_wrapper_fim_db_get_count_file_entry(int ret);
+
+/**
+ * @brief This function loads the expect and will_return calls for the wrapper of fim_db_remove_path
+ */
+void expect_fim_db_remove_path(const char* path, int ret_val);
+
+FIMDBErrorCode __wrap_fim_db_file_update(fim_entry* new, callback_context_t callback);
+
+FIMDBErrorCode __wrap_fim_db_file_pattern_search(const char* pattern,
+                                                 __attribute__((unused)) callback_context_t callback);
+
+void expect_fim_db_file_pattern_search(const char* pattern, int ret_val);
+
+FIMDBErrorCode __wrap_fim_db_file_inode_search(const unsigned long inode,
+                                               const unsigned long dev,
+                                               __attribute__((unused)) callback_context_t callback);
+void expect_fim_db_file_inode_search(const unsigned long inode, const unsigned long dev, int ret_val);
+
+int __wrap_fim_db_get_count_file_inode();
+
+void __wrap_fim_run_integrity();
+
+void __wrap_is_fim_shutdown();
+
+void __wrap_fim_db_teardown();
+
+void __wrap__imp__dbsync_initialize();
+
+void __wrap_fim_db_close_and_delete_database();
+
+void __wrap_fim_db_clean_file_table();
+
+void __wrap_fim_db_update_last_sync_time(const char* table_name);
+
+int __wrap_fim_db_get_max_version_file();
+
+int __wrap_fim_db_set_version_file();
+
+FIMDBErrorCode __wrap_fim_db_file_delete(const char* path);
+
+cJSON* __wrap_fim_db_get_documents_to_promote(char* table_name, int count);
+
+cJSON* __wrap_fim_db_get_documents_to_demote(char* table_name, int count);
+
+int __wrap_fim_db_count_synced_docs(char* table_name);
+
+int __wrap_fim_db_sync_row_update(const char* table_name, const char* path,
+                                   const char* arch, const char* value, int sync_value);
+
+int __wrap_fim_db_set_sync_flag(char* table_name, pending_sync_item_t* item, int sync_value);
+
+int __wrap_fim_db_increase_each_entry_version(const char* table_name);
+
+cJSON* __wrap_fim_db_get_every_element(const char* table_name, const char* row_filter);
+
+#endif

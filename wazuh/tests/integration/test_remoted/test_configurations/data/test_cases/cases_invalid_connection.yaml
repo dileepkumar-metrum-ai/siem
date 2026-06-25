@@ -1,0 +1,9 @@
+- name: Command config wazuh manager for invalid connections
+  description: Command config wazuh manager for invalid connections
+  configuration_parameters:
+    PORT: '1514'
+    PROTOCOL: 'TCP'
+    CONNECTION: 'Testing'
+  metadata:
+    invalid: ".*ERROR: \\(\\d+\\): Invalid element in the configuration: 'connection'.*"
+    element_type: connection
